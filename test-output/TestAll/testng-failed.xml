@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [TestAll]">
+  <test name="order(failed)">
+    <classes>
+      <class name="com.albion.Anagrams.MyClassTest">
+        <methods>
+          <include name="check_anagrams"/>
+        </methods>
+      </class> <!-- com.albion.Anagrams.MyClassTest -->
+    </classes>
+  </test> <!-- order(failed) -->
+</suite> <!-- Failed suite [TestAll] -->
