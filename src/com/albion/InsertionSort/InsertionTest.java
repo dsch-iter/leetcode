@@ -4,31 +4,22 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.albion.core.ListNode;
+import com.albion.core.Utils;
 
 public class InsertionTest {
 
 	@DataProvider(name = "data01")
 	public Object[][] data() {
-		ListNode t1 = new ListNode(3);
-		ListNode t2 = new ListNode(2);
-		ListNode t3 = new ListNode(4);
-
-		t1.next = t2;
-		t2.next = t3;
-		t3.next = null;
-
-		ListNode a1 = new ListNode(2);
-		ListNode a2 = new ListNode(1);
-		a1.next = a2;
-		a2.next = null;
 		
-		ListNode b1 = new ListNode(3);
-		ListNode b2 = new ListNode(4);
-		ListNode b3 = new ListNode(1);
+		Integer[] i1 = {3,2,4};
+		ListNode t1 = Utils.generateList(i1);
+
+		Integer[] i2 = {3,2,4};
+		ListNode a1 = Utils.generateList(i2);
+
+		Integer[] i3 = {3,2,4};
+		ListNode b1 = Utils.generateList(i3);
 		
-		b1.next = b2;
-		b2.next = b3;
-		b3.next = null;
 
 		return new Object[][] {  {t1}, { a1 } , {b1}};
 	}
