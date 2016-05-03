@@ -1,7 +1,5 @@
 package com.albion.PowerOfFour;
 
-import java.math.BigInteger;
-
 public class PowerOfFour {
     public boolean isPowerOfFour(int num) {
     	
@@ -19,5 +17,26 @@ public class PowerOfFour {
     		String y = copy.replace("0", "");
     		return y.equals("1");
     	}
+    }
+    
+   public boolean isPowerOfFourV2(int num) {
+	   if(num % 4 != 0){
+		   return false;
+	   } else {
+		   int val = num;
+		   while(val != 1) {
+			   val = val / 4;
+			   if(val == 1){
+				   return true;
+			   } else {
+				   if(val % 4 != 0) {
+					   return false;
+				   } else {
+					   continue;
+				   }
+			   }
+		   }
+		   return true;
+	   }
     }
 }
