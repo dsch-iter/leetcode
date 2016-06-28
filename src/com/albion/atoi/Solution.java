@@ -5,84 +5,41 @@ package com.albion.atoi;
  * 
  */
 public class Solution {
-	public int atoi(String str) {
-
-		String input = str.trim();
-//		if (input.charAt(0) == '+') {
-//			input = input.substring(1, input.length() - 1);
-//		}
-
-		int base = 0;
-		boolean isNegative = isNegative(str);
-		int digit = digitCount(str);
-
-		int startIndex = 0;
-
-		if (isNegative) {
-			startIndex = 1;
+	public int myAtoi(String str) {
+		if("".equals(str)){
+			return 0;
 		}
-
-		for (int i = startIndex; i < str.length(); i++) {
-			int x = str.charAt(i) - '0';
-
-			int y = -1;
-			if (isNegative) {
-				y = digit - i;
-			} else {
-				y = digit - i - 1;
-			}
-
-			int power10 = (int) Math.pow(10, y);
-			x = power10 * x;
-			base = base + x;
-		}
-
-		if (isNegative) {
-			base = 0 - base;
-		}
-		if (base > Integer.MAX_VALUE) {
-			base = Integer.MAX_VALUE;
-		} else if (base < Integer.MIN_VALUE) {
-			base = Integer.MIN_VALUE;
-		}
-
-		return base;
-	}
-
-	public boolean isNegative(String input) {
+		
+		
+		
 		boolean isNegative = false;
-		char[] charInput = input.toCharArray();
-		for (int i = 0; i < charInput.length; i++) {
-			if (charInput[i] == '-') {
-				if (isNegative == true) {
-					// throw new NumberFormatException("bad!");
-				} else {
-					isNegative = true;
-				}
-			}
-			// else if(charInput[i] == '+'){
-			// isNegative = false;
-			// break;
-			// }
+		if(str.charAt(0) == '+') {
+			str = str.substring(1, str.length());	
+		} else if (str.charAt(0) == '-'){
+			isNegative = true;
+			str = str.substring(1, str.length());	
 		}
-		return isNegative;
+		
+		int sum = 0;
+		
+		char[] array = str.toCharArray();
+		int length = array.length;
+		for(int i = 0; i < length; i++){
+			int cur = getValue(i, array);
+			sum = sum + cur;
+		}
+		
+		if(isNegative) {
+			sum = 0 - sum;
+		}
+		return sum;
 	}
-
-	public int digitCount(String input) {
-		input = input.trim();
-		char[] charInput = input.toCharArray();
-		int digit = 0;
-
-		for (int i = 0; i < charInput.length; i++) {
-			if (charInput[i] == '-') {
-				continue;
-			} else if (charInput[i] == '+') {
-				continue;
-			} else {
-				digit++;
-			}
-		}
-
-		return digit;
+	
+	public int getValue(int index, char[] x) {  // index = 1, length =3 
+		int n = x.length - index - 1; // 3 - 1 - 1
+		int base = new Double(Math.pow(10, n)).intValue();
+		int val = x[index] - 48;
+		int result = val * base;
+		return result;
 	}
 }
