@@ -1,21 +1,29 @@
 package com.albion.missing;
 
+import java.util.Arrays;
+
 public class MissingNumber {
 	
 	//0, 1, 2, 3 ... N
+	//0 + 1 + 2 + 3 = 6
     public int missingNumber(int[] nums) {
-      int result = -1;
-      
-      int size = nums.length;
-      if(size == 1){
-    	  return nums[0] +1;
-      }
-      for(int i = 0; i < nums.length - 1; i++){
-    	  result = nums[i+1] - nums[i];
-    	  if(result != 1){
-    		  return result;
-    	  }
-      }
-      return result;
+    	
+    	Arrays.sort(nums);
+    	int size = nums.length;
+    	if(nums[0] == 0){
+    		int expectedSize = size + 1;
+    		int expectedSum = 0;
+    		for(int i = 0; i < expectedSize; i++){
+    			expectedSum = expectedSum + i;
+    		}
+    		
+    		int actualSum = 0;
+    		for(int j = 0; j < size; j++){
+    			actualSum = actualSum + nums[j];
+    		}
+    		return expectedSum - actualSum;
+    	} else {
+    		return 0;
+    	}
     }
 }
