@@ -11,15 +11,18 @@ public class AtoiTest {
 	@DataProvider(name = "data01")
 	public Object[][] data() {
 		Object[][] ret = new Object[][] {
-				{ "12345", 12345 }, 
-				{ "-54321", -54321 } 		
+				{"     +004500", 4500}
+//				{"    010", 10}
+//				{"123", 123}
+//				{ "12345", 12345 }, 
+//				{ "-54321", -54321 } 		
 		};
 		return ret;
 	}
 
 	@Test(dataProvider = "data01")
 	public void testAtoi(String input, int expectedNumber) {
-		Solution s = new Solution();
+		Atoi s = new Atoi();
 		int actual = s.myAtoi(input);
 		Assert.assertEquals(actual, expectedNumber, "not equal");
 	}

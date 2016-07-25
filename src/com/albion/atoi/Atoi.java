@@ -4,14 +4,12 @@ package com.albion.atoi;
  * 1235
  * 
  */
-public class Solution {
+public class Atoi {
 	public int myAtoi(String str) {
 		if("".equals(str)){
 			return 0;
 		}
-		
-		
-		
+		str = str.trim();
 		boolean isNegative = false;
 		if(str.charAt(0) == '+') {
 			str = str.substring(1, str.length());	
@@ -19,12 +17,18 @@ public class Solution {
 			isNegative = true;
 			str = str.substring(1, str.length());	
 		}
-		
+		str = str.replaceFirst("^0+(?!$)", "");
+
 		int sum = 0;
-		
 		char[] array = str.toCharArray();
 		int length = array.length;
 		for(int i = 0; i < length; i++){
+			
+			int num = array[i] - 48;
+			if(num  > 10 || num < 0){
+				return 0;
+			}
+			
 			int cur = getValue(i, array);
 			sum = sum + cur;
 		}
